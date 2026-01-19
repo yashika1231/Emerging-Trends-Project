@@ -1,0 +1,66 @@
+PROJECT: Explainable Phishing Email Detection Using LLMs and Vector
+Similarity Search
+
+OVERVIEW: This system analyzes emails to detect phishing attempts using
+a hybrid approach: 1. Heuristic indicators (basic rules) 2. Vector
+similarity search (ChromaDB) 3. LLM-based explainable reasoning (OpenAI)
+
+TECH STACK: - Python (FastAPI backend) - ChromaDB (vector database) -
+OpenAI API (LLM reasoning) - Docker + Docker Compose
+(containerization) - GitHub (version control)
+
+ROLES:
+
+Person A (LLM Engineer): - Build LLM explanation module - Enforce
+structured JSON output - Prompt engineering for cybersecurity context
+
+Person B (Vector DB Engineer): - Implement ChromaDB storage and
+similarity search - Create phishing and legitimate datasets - Preload
+dataset into vector DB
+
+Person C (DevOps & Backend): - Create FastAPI endpoints - Integrate
+Person A and B modules - Implement risk scoring logic - Dockerize
+application and manage deployment
+
+WORKFLOW:
+
+1.  INPUT: User submits raw email text
+
+2.  PARSING: Extract:
+
+-   URLs
+-   Raw content
+
+3.  VECTOR SEARCH:
+
+-   Convert email into embedding
+-   Compare with stored phishing samples
+-   Retrieve top similar results
+
+4.  LLM ANALYSIS:
+
+-   Analyze email + indicators
+-   Return JSON: { classification, risk_level, explanation }
+
+5.  RISK SCORING: Combine:
+
+-   Heuristics
+-   Vector similarity
+-   LLM output
+
+6.  OUTPUT: Return: { classification, risk_score, risk_level,
+    explanation, similarity_matches }
+
+FEATURES: - Explainable AI (LLM reasoning) - Hybrid detection (rules +
+AI) - Semantic similarity (vector DB) - Containerized deployment
+(Docker)
+
+API ENDPOINT: /analyze (POST) Input: email_text Output: JSON analysis
+
+DOCKER: - Dockerfile for backend - docker-compose for service
+orchestration - Environment variable: OPENAI_API_KEY
+
+DATA: - phishing_samples.txt - legitimate_samples.txt
+
+GOAL: Build a realistic, explainable cybersecurity system that
+demonstrates: - LLM integration - Vector search - DevOps deployment
