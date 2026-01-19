@@ -1,4 +1,3 @@
-'''
 # 🛡️ Explainable Phishing Email Detection Using LLMs and Vector Similarity Search
 
 ## 📌 Overview
@@ -188,4 +187,3 @@ docker compose up --build
 
 This project is for academic and educational purposes.
 
-'''
