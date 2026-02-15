@@ -17,7 +17,7 @@ except ImportError:
 
 # ─── Structured Output Schema ─────────────────────────────
 # This schema is enforced by Gemini's API — the model MUST
-
+# return a JSON object matching this structure exactly.
 LLM_RESPONSE_SCHEMA = {
     "type": "object",
     "properties": {
