@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhishGuard AI — Explainable Phishing Detection & App Verification</title>
+  <meta name="description" content="Analyze emails for phishing attempts and verify enterprise application legitimacy using AI-powered detection." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- ═══ Header ═══ -->
+    <header class="app-header">
+      <div class="logo-icon">🛡️</div>
+      <h1>PhishGuard AI</h1>
+      <p class="subtitle">
+        Explainable phishing detection powered by LLM reasoning, vector similarity search, heuristic analysis, and enterprise app verification
+      </p>
+      <div class="tech-badges" id="tech-badges">
+        <span class="tech-badge" id="connection-badge">⏳ Connecting...</span>
+        <span class="tech-badge">🤖 Google Gemini</span>
+        <span class="tech-badge">🔍 ChromaDB</span>
+        <span class="tech-badge">⚡ FastAPI</span>
+        <span class="tech-badge">🐳 Docker</span>
+        <span class="tech-badge">📧 Metadata</span>
+        <span class="tech-badge">🏢 App Verify</span>
+        <span class="tech-badge">📁 Dynamic Data</span>
+      </div>
+    </header>
+
+    <!-- ═══ Tab Navigation ═══ -->
+    <div class="tab-nav" id="tab-nav">
+      <button class="tab-btn active" data-tab="email" onclick="switchTab('email')">
+        <span class="tab-icon">📧</span> Email Analysis
+      </button>
+      <button class="tab-btn" data-tab="app" onclick="switchTab('app')">
+        <span class="tab-icon">🏢</span> App Verification
+      </button>
+      <button class="tab-btn" data-tab="dataset" onclick="switchTab('dataset')">
+        <span class="tab-icon">📁</span> Dataset
+      </button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- ═══ EMAIL ANALYSIS TAB ═══ -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="tab-content active" id="tab-email">
+      <div class="main-grid">
+
+        <!-- ── Input Panel ── -->
+        <div class="panel" id="input-panel">
+          <div class="panel-header">
+            <span class="icon">📧</span>
+            <h2>Email Analysis</h2>
+          </div>
+
+          <textarea
+            id="email-input"
+            class="email-input"
+            placeholder="Paste the email text you want to analyze for phishing indicators...
+
+Example:
+Subject: URGENT: Your Account Has Been Compromised!
+From: security-alert@paypa1-support.com
+
+Dear Valued Customer,
+We have detected suspicious activity on your account..."
+          ></textarea>
+
+          <!-- Metadata Toggle -->
+          <div class="metadata-toggle">
+            <label class="toggle-label" for="metadata-checkbox">
+              <input type="checkbox" id="metadata-checkbox" />
+              <span class="toggle-switch"></span>
+              <span class="toggle-text">Include Email Headers (Metadata Analysis)</span>
+            </label>
+          </div>
+
+          <!-- Metadata Headers Input (hidden by default) -->
+          <div class="metadata-input-container" id="metadata-container" style="display:none;">
+            <textarea
+              id="headers-input"
+              class="headers-input"
+              placeholder="Paste raw email headers here for deeper analysis...
+
+Example:
+From: alert@paypa1-support.com
+Reply-To: scammer@evil.xyz
+Return-Path: bounce@malicious.net
+Authentication-Results: mx.google.com; spf=fail; dkim=fail; dmarc=fail
+Received: from unknown (185.236.45.112) by mx.google.com
+X-Mailer: PHPMailer 5.2.28
+Message-ID: <abc123@suspicious.net>
+Date: Wed, 25 Mar 2026 10:00:00 +0000"
+            ></textarea>
+          </div>
+
+          <div class="input-footer">
+            <span class="char-count" id="char-count">0 characters</span>
+            <button class="btn-analyze" id="btn-analyze" onclick="analyzeEmail()">
+              <span class="btn-text">🔬 Analyze Email</span>
+              <span class="spinner"></span>
+            </button>
+          </div>
+
+          <div class="error-banner" id="error-banner">
+            <span>⚠️</span>
+            <span id="error-text"></span>
+          </div>
+
+          <!-- EML File Upload -->
+          <div class="metadata-toggle" style="margin-top: 0.5rem;">
+            <label class="toggle-label" for="eml-checkbox">
+              <input type="checkbox" id="eml-checkbox" />
+              <span class="toggle-switch"></span>
+              <span class="toggle-text">Upload .eml File Instead</span>
+            </label>
+          </div>
+          <div class="metadata-input-container" id="eml-container" style="display:none;">
+            <div class="file-drop-zone" id="eml-drop-zone" style="min-height:80px;">
+              <div class="drop-zone-icon">📧</div>
+              <div class="drop-zone-text">Drag & drop a .eml file here, or click to browse</div>
+              <input type="file" id="eml-file-input" accept=".eml" style="display:none;" />
+            </div>
+            <div class="selected-file" id="eml-selected-file" style="display:none;">
+              <span class="file-icon">📧</span>
+              <span class="file-name" id="eml-file-name"></span>
+              <button class="file-remove" onclick="clearEmlSelection()">✕</button>
+            </div>
+          </div>
+
+          <!-- Quick Examples -->
+          <div class="quick-examples">
+            <div class="quick-examples-label">Quick Examples</div>
+            <div class="example-btns">
+              <button class="btn-example danger" onclick="loadExample('phishing-account')">🚨 Account Scam</button>
+              <button class="btn-example danger" onclick="loadExample('phishing-lottery')">🎰 Lottery Scam</button>
+              <button class="btn-example danger" onclick="loadExample('phishing-ceo')">💼 CEO Fraud</button>
+              <button class="btn-example safe" onclick="loadExample('legit-meeting')">✅ Team Meeting</button>
+              <button class="btn-example safe" onclick="loadExample('legit-order')">📦 Order Confirm</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Results Panel (empty state) ── -->
+        <div class="panel" id="results-placeholder">
+          <div class="panel-header">
+            <span class="icon">📊</span>
+            <h2>Analysis Results</h2>
+          </div>
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <h3>No Analysis Yet</h3>
+            <p>Paste an email and click "Analyze Email" to get started</p>
+          </div>
+        </div>
+
+        <!-- ── Results Panel (with data) ── -->
+        <div class="panel results-panel" id="results-panel">
+          <div class="panel-header">
+            <span class="icon">📊</span>
+            <h2>Analysis Results</h2>
+            <span class="badge" id="llm-source-badge" style="background: rgba(99,102,241,0.15); color: var(--accent-indigo);">—</span>
+          </div>
+
+          <!-- Risk Gauge -->
+          <div class="risk-gauge-container">
+            <div class="risk-gauge">
+              <svg viewBox="0 0 120 120">
+                <circle class="gauge-bg" cx="60" cy="60" r="50" />
+                <circle class="gauge-fill" id="gauge-fill" cx="60" cy="60" r="50"
+                  stroke-dasharray="314.16"
+                  stroke-dashoffset="314.16" />
+              </svg>
+              <div class="gauge-center">
+                <div class="score-value" id="score-value">—</div>
+                <div class="score-label" id="score-label">Risk Score</div>
+              </div>
+            </div>
+            <div class="classification-badge" id="classification-badge">—</div>
+            <div class="analysis-meta">
+              <span id="analysis-time">⏱️ —</span>
+              <span id="analysis-model">🤖 —</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Detailed Results ═══ -->
+      <div class="results-sections results-panel" id="results-details">
+
+        <!-- LLM Explanation -->
+        <div class="result-section section-full">
+          <div class="section-title">
+            <span class="section-icon">🧠</span>
+            LLM Explanation
+          </div>
+          <div class="explanation-text" id="explanation-text">—</div>
+          <div class="recommended-action" id="recommended-action">
+            <strong>Recommended Action: </strong>
+            <span id="action-text">—</span>
+          </div>
+        </div>
+
+        <!-- Key Findings -->
+        <div class="result-section">
+          <div class="section-title">
+            <span class="section-icon">🔑</span>
+            Key Findings
+          </div>
+          <ul class="findings-list stagger-children" id="findings-list"></ul>
+        </div>
+
+        <!-- Heuristic Indicators -->
+        <div class="result-section">
+          <div class="section-title">
+            <span class="section-icon">🔎</span>
+            Heuristic Indicators
+          </div>
+          <div class="indicators-grid stagger-children" id="indicators-grid"></div>
+        </div>
+
+        <!-- Metadata Analysis (shown when available) -->
+        <div class="result-section section-full" id="metadata-section" style="display:none;">
+          <div class="section-title">
+            <span class="section-icon">📋</span>
+            Email Metadata Analysis
+          </div>
+          <div id="metadata-results"></div>
+        </div>
+
+        <!-- Similarity Matches -->
+        <div class="result-section">
+          <div class="section-title">
+            <span class="section-icon">📐</span>
+            Vector Similarity Matches
+          </div>
+          <div class="matches-list stagger-children" id="matches-list"></div>
+        </div>
+
+        <!-- Risk Breakdown -->
+        <div class="result-section">
+          <div class="section-title">
+            <span class="section-icon">📊</span>
+            Risk Score Breakdown
+          </div>
+          <div class="breakdown-bars" id="breakdown-bars"></div>
+        </div>
+
+        <!-- Extracted URLs -->
+        <div class="result-section section-full">
+          <div class="section-title">
+            <span class="section-icon">🔗</span>
+            Extracted URLs
+          </div>
+          <div class="urls-list" id="urls-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- ═══ APP VERIFICATION TAB ═══ -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="tab-content" id="tab-app">
+      <div class="main-grid">
+
+        <!-- ── App Input Panel ── -->
+        <div class="panel" id="app-input-panel">
+          <div class="panel-header">
+            <span class="icon">🏢</span>
+            <h2>Enterprise App Verification</h2>
+          </div>
+          <p class="panel-description">
+            Verify whether files, network traffic, or emails are from legitimate enterprise applications or malicious impersonators.
+          </p>
+
+          <!-- App Selector -->
+          <div class="form-group">
+            <label class="form-label" for="app-select">Application to Verify</label>
+            <select id="app-select" class="form-select">
+              <option value="">Loading apps...</option>
+            </select>
+          </div>
+
+          <!-- File Info -->
+          <div class="form-group">
+            <label class="form-label" for="app-filename">File / Installer Name <span class="optional">(optional)</span></label>
+            <input type="text" id="app-filename" class="form-input" placeholder="e.g., ZoomInstaller.exe or z00m-update.exe.pdf" />
+          </div>
+
+          <!-- Network Domains -->
+          <div class="form-group">
+            <label class="form-label" for="app-domains">Network Domains <span class="optional">(comma-separated, optional)</span></label>
+            <input type="text" id="app-domains" class="form-input" placeholder="e.g., zoom.us, suspicious-cdn.net, update-zoom.xyz" />
+          </div>
+
+          <!-- Email Sender -->
+          <div class="form-group">
+            <label class="form-label" for="app-sender">Email Sender <span class="optional">(optional)</span></label>
+            <input type="text" id="app-sender" class="form-input" placeholder="e.g., no-reply@zoom.us or alert@z00m-security.com" />
+          </div>
+
+          <!-- Email URLs -->
+          <div class="form-group">
+            <label class="form-label" for="app-urls">Email URLs <span class="optional">(comma-separated, optional)</span></label>
+            <input type="text" id="app-urls" class="form-input" placeholder="e.g., https://zoom.us/j/123, https://zoom-verify.suspicious.com" />
+          </div>
+
+          <!-- Process Name -->
+          <div class="form-group">
+            <label class="form-label" for="app-process">Process Name <span class="optional">(optional)</span></label>
+            <input type="text" id="app-process" class="form-input" placeholder="e.g., zoom.exe or zoomhelper.exe" />
+          </div>
+
+          <button class="btn-analyze" id="btn-verify" onclick="verifyApp()">
+            <span class="btn-text">🔍 Verify Application</span>
+            <span class="spinner"></span>
+          </button>
+
+          <div class="error-banner" id="app-error-banner">
+            <span>⚠️</span>
+            <span id="app-error-text"></span>
+          </div>
+
+          <!-- Quick App Examples -->
+          <div class="quick-examples">
+            <div class="quick-examples-label">Quick Examples</div>
+            <div class="example-btns">
+              <button class="btn-example danger" onclick="loadAppExample('fake-zoom')">🚨 Fake Zoom</button>
+              <button class="btn-example danger" onclick="loadAppExample('fake-teams')">🚨 Fake Teams</button>
+              <button class="btn-example safe" onclick="loadAppExample('legit-zoom')">✅ Real Zoom</button>
+              <button class="btn-example safe" onclick="loadAppExample('legit-teams')">✅ Real Teams</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── App Results Placeholder ── -->
+        <div class="panel" id="app-results-placeholder">
+          <div class="panel-header">
+            <span class="icon">🔐</span>
+            <h2>Verification Results</h2>
+          </div>
+          <div class="empty-state">
+            <div class="empty-icon">🏢</div>
+            <h3>No Verification Yet</h3>
+            <p>Select an application and enter its artifacts to verify legitimacy</p>
+          </div>
+        </div>
+
+        <!-- ── App Results Panel ── -->
+        <div class="panel results-panel" id="app-results-panel">
+          <div class="panel-header">
+            <span class="icon">🔐</span>
+            <h2>Verification Results</h2>
+          </div>
+
+          <div class="app-verdict-container" id="app-verdict-container">
+            <div class="app-verdict-icon" id="app-verdict-icon"></div>
+            <div class="app-verdict-label" id="app-verdict-label"></div>
+            <div class="app-verdict-confidence" id="app-verdict-confidence"></div>
+            <div class="app-verdict-name" id="app-verdict-name"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ App Detailed Results ═══ -->
+      <div class="results-sections results-panel" id="app-results-details">
+
+        <!-- Recommendation -->
+        <div class="result-section section-full">
+          <div class="section-title">
+            <span class="section-icon">💡</span>
+            Recommendation
+          </div>
+          <div class="explanation-text" id="app-recommendation">—</div>
+        </div>
+
+        <!-- Findings -->
+        <div class="result-section section-full">
+          <div class="section-title">
+            <span class="section-icon">🔍</span>
+            Findings
+          </div>
+          <div class="indicators-grid stagger-children" id="app-findings"></div>
+        </div>
+
+        <!-- Checks Performed -->
+        <div class="result-section">
+          <div class="section-title">
+            <span class="section-icon">✅</span>
+            Checks Performed
+          </div>
+          <div class="indicators-grid stagger-children" id="app-checks"></div>
+        </div>
+
+        <!-- Expected Signatures -->
+        <div class="result-section">
+          <div class="section-title">
+            <span class="section-icon">📝</span>
+            Known Legitimate Signatures
+          </div>
+          <div id="app-signatures"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- ═══ DATASET TAB ═══ -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="tab-content" id="tab-dataset">
+      <div class="main-grid">
+
+        <!-- ── Upload Panel ── -->
+        <div class="panel" id="dataset-upload-panel">
+          <div class="panel-header">
+            <span class="icon">📁</span>
+            <h2>Upload Dataset</h2>
+          </div>
+          <p class="panel-description">
+            Upload your own phishing or legitimate email samples to improve detection accuracy. 
+            Accepted formats: <strong>.txt</strong> (emails separated by <code>---EMAIL---</code>) or <strong>.csv</strong> (one email per row).
+          </p>
+
+          <!-- Label Selector -->
+          <div class="form-group">
+            <label class="form-label" for="dataset-label">Sample Type</label>
+            <select id="dataset-label" class="form-select">
+              <option value="phishing">🚨 Phishing Samples</option>
+              <option value="legitimate">✅ Legitimate Samples</option>
+            </select>
+          </div>
+
+          <!-- File Drop Zone -->
+          <div class="file-drop-zone" id="file-drop-zone">
+            <div class="drop-zone-icon">📤</div>
+            <div class="drop-zone-text">Drag & drop a file here, or click to browse</div>
+            <div class="drop-zone-hint">.txt or .csv files accepted</div>
+            <input type="file" id="dataset-file-input" accept=".txt,.csv" style="display:none;" />
+          </div>
+          <div class="selected-file" id="selected-file" style="display:none;">
+            <span class="file-icon">📄</span>
+            <span class="file-name" id="selected-file-name"></span>
+            <button class="file-remove" onclick="clearFileSelection()">✕</button>
+          </div>
+
+          <button class="btn-analyze" id="btn-upload" onclick="uploadDataset()">
+            <span class="btn-text">📤 Upload to Vector DB</span>
+            <span class="spinner"></span>
+          </button>
+
+          <div class="error-banner" id="dataset-error-banner">
+            <span>⚠️</span>
+            <span id="dataset-error-text"></span>
+          </div>
+
+          <div class="success-banner" id="dataset-success-banner" style="display:none;">
+            <span>✅</span>
+            <span id="dataset-success-text"></span>
+          </div>
+
+          <!-- Reset Dataset -->
+          <div class="quick-examples">
+            <div class="quick-examples-label">Dataset Actions</div>
+            <div class="example-btns">
+              <button class="btn-example safe" onclick="loadDatasetStats()">🔄 Refresh Stats</button>
+              <button class="btn-example danger" onclick="resetDataset()">🗑️ Reset to Defaults</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Stats Panel ── -->
+        <div class="panel" id="dataset-stats-panel">
+          <div class="panel-header">
+            <span class="icon">📊</span>
+            <h2>Dataset Statistics</h2>
+          </div>
+          <div class="dataset-stats-container" id="dataset-stats-container">
+            <div class="stat-cards">
+              <div class="stat-card stat-total">
+                <div class="stat-number" id="stat-total">—</div>
+                <div class="stat-label">Total Samples</div>
+              </div>
+              <div class="stat-card stat-phishing">
+                <div class="stat-number" id="stat-phishing">—</div>
+                <div class="stat-label">🚨 Phishing</div>
+              </div>
+              <div class="stat-card stat-legitimate">
+                <div class="stat-number" id="stat-legitimate">—</div>
+                <div class="stat-label">✅ Legitimate</div>
+              </div>
+            </div>
+            <div class="stat-bar-container">
+              <div class="stat-bar">
+                <div class="stat-bar-phishing" id="stat-bar-phishing" style="width: 50%;"></div>
+                <div class="stat-bar-legitimate" id="stat-bar-legitimate" style="width: 50%;"></div>
+              </div>
+              <div class="stat-bar-labels">
+                <span class="stat-bar-label phish-label">Phishing: <strong id="stat-phishing-pct">—</strong></span>
+                <span class="stat-bar-label legit-label">Legitimate: <strong id="stat-legitimate-pct">—</strong></span>
+              </div>
+            </div>
+            <div class="stat-sources" id="stat-sources"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
