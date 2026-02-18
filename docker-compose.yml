@@ -2,7 +2,10 @@ version: "3.8"
 
 services:
   phishing-detector:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phishguard-api
     ports:
       - "8000:8000"
     env_file:
@@ -12,6 +15,26 @@ services:
     volumes:
       - chroma_data:/app/chroma_data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   chroma_data:
+    driver: local
