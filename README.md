@@ -48,7 +48,7 @@ The system provides **classification, risk scoring, and detailed explanations** 
 
 ## 🏗️ Project Structure
 
-
+'''
 phishing-email-llm-analyzer/
 ├── app/
 │   ├── main.py                 # FastAPI backend (API orchestration)
@@ -80,7 +80,7 @@ phishing-email-llm-analyzer/
 ├── nginx.conf
 ├── requirements.txt
 └── README.md
-
+'''
 
 ---
 
