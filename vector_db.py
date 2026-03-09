@@ -1,6 +1,7 @@
 """
 ChromaDB vector database module for email similarity search.
 Handles storage, embedding, and retrieval of phishing/legitimate email samples.
+Uses PersistentClient for data persistence across restarts.
 Supports dynamic dataset upload.
 """
 import os
@@ -9,19 +10,32 @@ from app.config import settings
 
 
 class VectorDB:
-    """Manages ChromaDB operations for email similarity search."""
+    """Manages ChromaDB operations for email similarity search with persistent storage."""
 
     def __init__(self):
-        self.client = chromadb.EphemeralClient()
+        # Ensure persist directory exists
+        persist_dir = os.path.abspath(settings.CHROMA_PERSIST_DIR)
+        os.makedirs(persist_dir, exist_ok=True)
+
+        # Use PersistentClient for data persistence across restarts
+        self.client = chromadb.PersistentClient(path=persist_dir)
         self.collection = self.client.get_or_create_collection(
             name=settings.CHROMA_COLLECTION_NAME,
             metadata={"hnsw:space": "cosine"}
         )
         self._loaded = False
+        print(f"[VectorDB] Initialized with persistent storage at: {persist_dir}")
 
     def load_samples(self, data_dir: str = "data"):
-        """Load phishing and legitimate email samples into ChromaDB."""
-        if self._loaded and self.collection.count() > 0:
+        """
+        Load phishing and legitimate email samples into ChromaDB.
+        Skips loading if the collection already contains data from a previous run.
+        """
+        # Skip if already loaded in this session or if data exists from prior run
+        if self.collection.count() > 0:
+            if not self._loaded:
+                print(f"[VectorDB] Found {self.collection.count()} existing samples in persistent storage — skipping reload")
+                self._loaded = True
             return
 
         phishing_path = os.path.join(data_dir, "phishing_samples.txt")
@@ -48,21 +62,13 @@ class VectorDB:
                 ids.append(f"legitimate_{i}")
 
         if documents:
-            # Clear existing and re-add
-            try:
-                existing = self.collection.get()
-                if existing["ids"]:
-                    self.collection.delete(ids=existing["ids"])
-            except Exception:
-                pass
-
             self.collection.add(
                 documents=documents,
                 metadatas=metadatas,
                 ids=ids,
             )
             self._loaded = True
-            print(f"[VectorDB] Loaded {len(documents)} email samples into ChromaDB")
+            print(f"[VectorDB] Loaded {len(documents)} email samples into ChromaDB (persistent)")
 
     def add_emails(self, emails: list, label: str) -> dict:
         """
@@ -99,7 +105,7 @@ class VectorDB:
                 metadatas=metadatas,
                 ids=ids,
             )
-            print(f"[VectorDB] Added {len(documents)} {label} samples via upload")
+            print(f"[VectorDB] Added {len(documents)} {label} samples via upload (persisted)")
 
         return {"added": len(documents), "label": label}
 
