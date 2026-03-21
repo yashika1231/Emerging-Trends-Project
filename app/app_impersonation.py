@@ -9,7 +9,9 @@ import re
 from typing import Dict, List, Optional
 
 
-
+# ═══════════════════════════════════════════════════════════════
+#  Known Legitimate Application Profiles
+# ═══════════════════════════════════════════════════════════════
 
 APP_PROFILES: Dict[str, Dict] = {
     "zoom": {
