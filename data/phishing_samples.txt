@@ -13,6 +13,12 @@ If you do not respond within 24 hours, your account will be permanently closed.
 Thank you,
 PayPal Security Team
 
+
+
+
+
+
+
 ---EMAIL---
 Subject: You've Won $1,000,000 - Claim Now!
 From: prize-notification@lottery-intl.net
@@ -27,6 +33,11 @@ To claim your prize of $1,000,000 USD, please reply with the following informati
 
 Contact our claims agent: Dr. James Williams at claims@lottery-intl.net
 
+
+
+
+
+
 ---EMAIL---
 Subject: IT Department - Password Reset Required
 From: it-support@company-helpdesk.xyz
@@ -38,6 +49,10 @@ http://company-helpdesk.xyz/reset-password?user=employee
 Failure to reset your password within 2 hours will result in account lockout.
 
 IT Support Team
+
+
+
+
 
 ---EMAIL---
 Subject: Invoice #INV-29481 - Payment Overdue
@@ -51,6 +66,10 @@ Download Invoice: http://quickbooks-invoice.com/download/INV-29481.exe
 
 Regards,
 Accounts Receivable Department
+
+
+
+
 
 ---EMAIL---
 Subject: Your Apple ID has been locked
@@ -66,6 +85,11 @@ http://apple-id-verification.com/unlock
 If you don't verify within 48 hours, your account will be permanently disabled.
 
 Apple Support
+
+
+
+
+
 
 ---EMAIL---
 Subject: Exclusive Job Offer - $85/hr Remote Position
@@ -83,6 +107,10 @@ Apply here: http://google-careers-apply.net/application
 
 HR Department, Google Inc.
 
+
+
+
+
 ---EMAIL---
 Subject: FINAL WARNING: Domain Expiration Notice
 From: renewal@domain-registry-alert.com
@@ -97,6 +125,10 @@ If you do not renew immediately, your domain will be released to the public and 
 Renew Now: http://domain-registry-alert.com/renew?d=yourdomain.com
 
 Domain Registry Services
+
+
+
+
 
 ---EMAIL---
 Subject: Wire Transfer Confirmation Needed
@@ -116,6 +148,9 @@ This is confidential. Do not discuss with anyone else.
 Thanks,
 CEO
 
+
+
+
 ---EMAIL---
 Subject: Your Netflix subscription has expired
 From: billing@netflix-renewal.support
@@ -127,6 +162,8 @@ Update Payment: http://netflix-renewal.support/update-billing
 If payment is not updated within 24 hours, your account and viewing history will be permanently deleted.
 
 Netflix Billing Team
+
+
 
 ---EMAIL---
 Subject: Security Alert: Unusual Sign-in Activity
@@ -144,6 +181,8 @@ http://microsft-security.com/secure-account
 
 Microsoft Account Team
 
+
+
 ---EMAIL---
 Subject: Tax Refund Notification - $3,247.00
 From: refunds@irs-tax-filing.com
@@ -158,6 +197,8 @@ This refund will expire if not claimed within 5 business days.
 
 Internal Revenue Service
 
+
+
 ---EMAIL---
 Subject: Shared Document: Q4 Financial Report
 From: drive-share@google-docs-view.com
@@ -167,6 +208,8 @@ John Smith has shared a document with you: "Q4 Financial Report - Confidential"
 Open Document: http://google-docs-view.com/shared/q4-report
 
 You must sign in with your Google account to view this document.
+
+
 
 ---EMAIL---
 Subject: Package Delivery Failed - Action Required
@@ -180,6 +223,8 @@ Tracking Number: FX-7829451036
 Package must be claimed within 48 hours.
 
 FedEx Delivery Services
+
+
 
 ---EMAIL---
 Subject: Congratulations on Your Scholarship!
@@ -195,6 +240,8 @@ You have been selected to receive a $10,000 scholarship. To claim your award, pl
 Reply to this email with the required information within 7 days.
 
 University Grants Commission
+
+
 
 ---EMAIL---
 Subject: WhatsApp: Verify Your Account
