@@ -1,0 +1,254 @@
+---EMAIL---
+Subject: URGENT: Your Account Has Been Compromised!
+From: security-alert@paypa1-support.com
+
+Dear Valued Customer,
+
+We have detected suspicious activity on your account. Your account has been temporarily limited. Please click the link below to verify your identity immediately or your account will be permanently suspended within 24 hours.
+
+Click here to verify: http://paypa1-secure-login.suspicious-domain.com/verify
+
+If you do not respond within 24 hours, your account will be permanently closed.
+
+Thank you,
+PayPal Security Team
+
+
+
+
+
+
+
+---EMAIL---
+Subject: You've Won $1,000,000 - Claim Now!
+From: prize-notification@lottery-intl.net
+
+Congratulations! You have been selected as the winner of the International Online Lottery. Your email was randomly selected from a pool of 50,000,000 email addresses.
+
+To claim your prize of $1,000,000 USD, please reply with the following information:
+- Full Name
+- Date of Birth
+- Bank Account Number
+- Social Security Number
+
+Contact our claims agent: Dr. James Williams at claims@lottery-intl.net
+
+
+
+
+
+
+---EMAIL---
+Subject: IT Department - Password Reset Required
+From: it-support@company-helpdesk.xyz
+
+All employees are required to reset their passwords immediately due to a security breach. Please click the following link to reset your password:
+
+http://company-helpdesk.xyz/reset-password?user=employee
+
+Failure to reset your password within 2 hours will result in account lockout.
+
+IT Support Team
+
+
+
+
+
+---EMAIL---
+Subject: Invoice #INV-29481 - Payment Overdue
+From: billing@quickbooks-invoice.com
+
+Dear Client,
+
+Your invoice #INV-29481 for $4,750.00 is overdue. Please find the invoice attached and remit payment immediately to avoid late fees and potential legal action.
+
+Download Invoice: http://quickbooks-invoice.com/download/INV-29481.exe
+
+Regards,
+Accounts Receivable Department
+
+
+
+
+
+---EMAIL---
+Subject: Your Apple ID has been locked
+From: no-reply@apple-id-verification.com
+
+Dear Apple Customer,
+
+Your Apple ID has been locked for security reasons. Someone attempted to sign in to your account from an unrecognized device.
+
+To unlock your account, verify your identity here:
+http://apple-id-verification.com/unlock
+
+If you don't verify within 48 hours, your account will be permanently disabled.
+
+Apple Support
+
+
+
+
+
+
+---EMAIL---
+Subject: Exclusive Job Offer - $85/hr Remote Position
+From: hr@google-careers-apply.net
+
+Hello,
+
+We found your resume on LinkedIn and are pleased to offer you a remote data entry position at Google. The position pays $85/hour with flexible hours.
+
+To apply, please fill out the application form and provide:
+- Copy of your driver's license
+- Banking details for direct deposit setup
+
+Apply here: http://google-careers-apply.net/application
+
+HR Department, Google Inc.
+
+
+
+
+
+---EMAIL---
+Subject: FINAL WARNING: Domain Expiration Notice
+From: renewal@domain-registry-alert.com
+
+WARNING: Your domain is set to expire in 24 hours!
+
+Domain: yourdomain.com
+Expiration Date: Tomorrow
+
+If you do not renew immediately, your domain will be released to the public and may be purchased by someone else.
+
+Renew Now: http://domain-registry-alert.com/renew?d=yourdomain.com
+
+Domain Registry Services
+
+
+
+
+
+---EMAIL---
+Subject: Wire Transfer Confirmation Needed
+From: cfo@company-finance.biz
+
+Hi,
+
+I need you to process an urgent wire transfer of $25,000 to our new vendor. I'm currently in a meeting and cannot call. Please process this immediately and I'll provide the documentation later.
+
+Wire to:
+Bank: First International Bank
+Account: 4829501738
+Routing: 029384756
+
+This is confidential. Do not discuss with anyone else.
+
+Thanks,
+CEO
+
+
+
+
+---EMAIL---
+Subject: Your Netflix subscription has expired
+From: billing@netflix-renewal.support
+
+Your Netflix subscription has expired and your account is on hold. To continue enjoying Netflix, please update your payment information.
+
+Update Payment: http://netflix-renewal.support/update-billing
+
+If payment is not updated within 24 hours, your account and viewing history will be permanently deleted.
+
+Netflix Billing Team
+
+
+
+---EMAIL---
+Subject: Security Alert: Unusual Sign-in Activity
+From: no-reply@microsft-security.com
+
+We detected unusual sign-in activity on your Microsoft account. Someone tried to access your account from Russia.
+
+Details:
+- Location: Moscow, Russia
+- IP: 185.236.45.112
+- Time: Today at 3:42 AM
+
+If this wasn't you, secure your account immediately:
+http://microsft-security.com/secure-account
+
+Microsoft Account Team
+
+
+
+---EMAIL---
+Subject: Tax Refund Notification - $3,247.00
+From: refunds@irs-tax-filing.com
+
+Dear Taxpayer,
+
+After reviewing your tax filing, we have determined you are eligible for a tax refund of $3,247.00. To receive your refund via direct deposit, please verify your information.
+
+Verify Now: http://irs-tax-filing.com/verify-refund
+
+This refund will expire if not claimed within 5 business days.
+
+Internal Revenue Service
+
+
+
+---EMAIL---
+Subject: Shared Document: Q4 Financial Report
+From: drive-share@google-docs-view.com
+
+John Smith has shared a document with you: "Q4 Financial Report - Confidential"
+
+Open Document: http://google-docs-view.com/shared/q4-report
+
+You must sign in with your Google account to view this document.
+
+
+
+---EMAIL---
+Subject: Package Delivery Failed - Action Required
+From: tracking@fedex-delivery-notice.com
+
+We attempted to deliver your package but no one was available to sign. Your package will be returned to sender unless you reschedule delivery.
+
+Reschedule Here: http://fedex-delivery-notice.com/reschedule
+
+Tracking Number: FX-7829451036
+Package must be claimed within 48 hours.
+
+FedEx Delivery Services
+
+
+
+---EMAIL---
+Subject: Congratulations on Your Scholarship!
+From: awards@university-grants.org
+
+Dear Student,
+
+You have been selected to receive a $10,000 scholarship. To claim your award, please provide:
+- Student ID
+- Social Security Number
+- Bank account for disbursement
+
+Reply to this email with the required information within 7 days.
+
+University Grants Commission
+
+
+
+---EMAIL---
+Subject: WhatsApp: Verify Your Account
+From: verify@whatsapp-web-login.com
+
+Your WhatsApp account needs to be verified. If you do not verify within 24 hours, your account will be deactivated and all messages will be lost.
+
+Verify Account: http://whatsapp-web-login.com/verify
+
+WhatsApp Support
